@@ -1,0 +1,10 @@
+<nav *ngIf="!this.isLoggedIn && this.activePath != 'Home'; else userLoggedInNav">
+    <a routerLinkActive="active-route-link" routerLink="Login">Login</a>
+    <a routerLinkActive="active-route-link" routerLink="Register">Register</a>
+</nav>
+
+<ng-template #userLoggedInNav>
+    <nav>
+        <a (click)="this.handleLogout()">Logout</a>
+    </nav>
+</ng-template>

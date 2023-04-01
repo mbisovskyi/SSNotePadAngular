@@ -1,0 +1,10 @@
+<form>
+    <label>Username</label>
+    <input type="text" autocomplete="username" name="username" [(ngModel)]="this.loginRequestObj.userName"/>
+    <label>Password</label>
+    <input type="password" autocomplete="new-password" name="password" [(ngModel)]="this.loginRequestObj.password"/>
+    <label>Confirm Password</label>
+    <input type="password" autocomplete="new-password" name="confirm-password" [(ngModel)]="this.confirmPasswordInput"/>
+</form>
+
+<button (click)="this.loginUser()">Sign In</button>
