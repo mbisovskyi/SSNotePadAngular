@@ -19,11 +19,12 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked(): void {
     this.activePath = window.location.pathname.replace("/", "");
+    this.isLoggedIn = window.history.state.isLoggedIn;
   }
 
   public handleLogout(): void {
     sessionStorage.removeItem('userInfo');
     this.isLoggedIn = false;
-    this.router.navigateByUrl("Login");
+    this.router.navigateByUrl("Login", {state: {isLoggedIn: false}});
   }
 }

@@ -1,10 +1,12 @@
-<nav *ngIf="!this.isLoggedIn && this.activePath != 'Home'; else userLoggedInNav">
-    <a routerLinkActive="active-route-link" routerLink="Login">Login</a>
-    <a routerLinkActive="active-route-link" routerLink="Register">Register</a>
-</nav>
-
-<ng-template #userLoggedInNav>
-    <nav>
-        <a (click)="this.handleLogout()">Logout</a>
+<div class="navbar-wrap" [ngClass]="{'no-user-navbar-bg': !this.isLoggedIn, 'yes-user-navbar-bg': this.isLoggedIn}">
+    <nav class="nav-container" *ngIf="!this.isLoggedIn && this.activePath != 'Home'; else userLoggedInNav">
+        <a routerLinkActive="active-route-link" routerLink="Login">Login</a>
+        <a routerLinkActive="active-route-link" routerLink="Register">Register</a>
     </nav>
-</ng-template>
+    
+    <ng-template #userLoggedInNav>
+        <nav class="nav-container">
+            <a id="logout-btn" (click)="this.handleLogout()">Logout</a>
+        </nav>
+    </ng-template>
+</div>

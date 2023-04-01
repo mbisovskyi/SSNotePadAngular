@@ -1,10 +1,19 @@
-<form>
-    <label>Username</label>
-    <input type="text" autocomplete="username" name="username" [(ngModel)]="this.loginRequestObj.userName"/>
-    <label>Password</label>
-    <input type="password" autocomplete="new-password" name="password" [(ngModel)]="this.loginRequestObj.password"/>
-    <label>Confirm Password</label>
-    <input type="password" autocomplete="new-password" name="confirm-password" [(ngModel)]="this.confirmPasswordInput"/>
-</form>
+<div class="form-container">
+    <form class="login-form" (submit)="this.loginUser()">
+        <div class="pos-rel form-input-container">
+            <input type="text" autocomplete="username" name="username" [(ngModel)]="this.loginRequestObj.userName"/>
+            <p class="pos-absolute form-label" [@openInput1]="this.isInput1Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(1)">Username</p>
+        </div>
+        <div class="pos-rel form-input-container">
+            <input type="password" autocomplete="new-password" name="password" [(ngModel)]="this.loginRequestObj.password"/>
+            <p class="pos-absolute form-label" [@openInput2]="this.isInput2Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(2)">Password</p>
+        </div>
+        <div class="pos-rel form-input-container">
+            <input type="password" autocomplete="new-password" name="confirm-password" [(ngModel)]="this.confirmPasswordInput"/>
+            <p class="pos-absolute form-label" [@openInput3]="this.isInput3Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(3)">Confirm Password</p>
+        </div>
+    
+        <button type="submit">Sign In</button>
+    </form>
+</div>
 
-<button (click)="this.loginUser()">Sign In</button>

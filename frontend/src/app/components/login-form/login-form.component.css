@@ -1,0 +1,41 @@
+.form-container {
+    max-width: 15%; 
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.login-form {
+    margin: auto;
+}
+
+.login-form label {
+    font-size: 12px;
+}
+
+.form-input-container input, p {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.form-input-container input {
+    padding: 0.09rem 0 0.09rem 0.2rem;
+    border: 1px solid gray;
+}
+
+.form-input-container p {
+    padding: 0.1rem 0;
+    padding-left: 1rem;
+}
+
+.form-label {
+    top: 0;
+    left: 0rem;
+    z-index: 2;
+    background: linear-gradient(0.45turn, #BE563A, #2C313B, #BE563A);
+    color: white;
+}
+
+.form-label:hover {
+    cursor: pointer;
+}
