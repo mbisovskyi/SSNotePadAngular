@@ -1,19 +1,59 @@
 <div class="form-container">
-    <form class="login-form" (submit)="this.loginUser()">
-        <div class="pos-rel form-input-container">
-            <input type="text" autocomplete="username" name="username" [(ngModel)]="this.loginRequestObj.userName"/>
-            <p class="pos-absolute form-label" [@openInput1]="this.isInput1Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(1)">Username</p>
+    <p>Login Form</p>
+    <form class="credentials-form" (submit)="this.loginUser()">
+        <div class="pos-rel credentials-form-input-container">
+            <div>
+                <input type="text" 
+                autocomplete="username" 
+                name="username" 
+                [(ngModel)]="this.loginRequestObj.userName" 
+                (change)="this.handleUsernameEmptyStatus(); this.handleSignInBtnDisplay()" 
+                (focus)="this.handleInputAnimation(0, 'focus')" 
+                (blur)="this.handleInputAnimation(0, 'blur')"/>
+            </div>
+            <p class="flex-between pos-absolute credentials-form-label" 
+                [@openInput1]="this.inputBoolStatesArray[0] ? 'Opened' : 'Closed'" 
+                (click)="this.handleClickInputAnimation(0)">Username
+                <span>
+                    <i *ngIf="this.isUsernameInputEmpty" class="fa-regular fa-square fa-fade"></i>
+                    <i *ngIf="!this.isUsernameInputEmpty" class="fa-solid fa-square-check"></i>
+                </span>
+            </p>
         </div>
-        <div class="pos-rel form-input-container">
-            <input type="password" autocomplete="new-password" name="password" [(ngModel)]="this.loginRequestObj.password"/>
-            <p class="pos-absolute form-label" [@openInput2]="this.isInput2Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(2)">Password</p>
+        <div class="pos-rel credentials-form-input-container">
+            <div>
+                <input type="password" 
+                autocomplete="new-password" 
+                name="password" 
+                [(ngModel)]="this.loginRequestObj.password" 
+                (focus)="this.handleInputAnimation(1, 'focus')" 
+                (blur)="this.handleInputAnimation(1, 'blur')"
+                (change)="this.handleSignInBtnDisplay()"/>
+            </div>
+            <p class="pos-absolute credentials-form-label" 
+                [@openInput2]="this.inputBoolStatesArray[1] ? 'Opened' : 'Closed'"
+                (click)="this.handleClickInputAnimation(1)">Password
+            </p>
         </div>
-        <div class="pos-rel form-input-container">
-            <input type="password" autocomplete="new-password" name="confirm-password" [(ngModel)]="this.confirmPasswordInput"/>
-            <p class="pos-absolute form-label" [@openInput3]="this.isInput3Open ? 'Opened' : 'Closed'" (click)="this.handleOpenInputAnimation(3)">Confirm Password</p>
+        <div class="pos-rel credentials-form-input-container">
+            <div>
+                <input type="password" 
+                autocomplete="new-password" 
+                name="confirm-password" 
+                [(ngModel)]="this.confirmPasswordInput" 
+                (focus)="this.handleInputAnimation(2, 'focus')" 
+                (blur)="this.handleInputAnimation(2, 'blur')"
+                (change)="this.handleSignInBtnDisplay()"/>
+            </div>
+            <p class="pos-absolute credentials-form-label" 
+                [@openInput3]="this.inputBoolStatesArray[2] ? 'Opened' : 'Closed'" 
+                (click)="this.handleClickInputAnimation(2)">Confirm Password
+            </p>
         </div>
-    
-        <button type="submit">Sign In</button>
+        <div class="form-submit-btn-container">
+            <span *ngIf="this.isSignInArrowShown"><i id="sign-in-arrow" class="fa-solid fa-arrow-right-to-bracket fa-shake fa-lg"></i></span>
+            <button class="form-submit-btn" type="submit">Sign In</button>
+        </div>
     </form>
 </div>
 

@@ -31,9 +31,10 @@ export class LoginFormComponent implements OnInit{
   public loginRequestObj: LoginRequest = new LoginRequest();
   public loginResponseObj: LoginResponse = new LoginResponse();
   public confirmPasswordInput: string = "";
-  public isInput1Open: boolean = false;
-  public isInput2Open: boolean = false;
-  public isInput3Open: boolean = false;
+  public inputBoolStatesArray: boolean[] = [false, false, false];
+  public isUsernameInputEmpty: boolean = true;
+  public isSignInArrowShown: boolean = false;
+  private inputFieldsNamesArray: string[] = ['username', 'password', 'confirm-password'];
   
 
   constructor(private router: Router, private commonApiService: CommonApi) {}
@@ -56,17 +57,33 @@ export class LoginFormComponent implements OnInit{
     this.loginResponseObj = JSON.parse(JSON.stringify(apiResponse));
   }
 
-  public handleOpenInputAnimation(inputNumber: number): void {
-    switch (inputNumber) {
-      case 1:
-        this.isInput1Open = !this.isInput1Open;
+  public handleClickInputAnimation(inputIndex: number): void {
+    this.inputBoolStatesArray[inputIndex] = !this.inputBoolStatesArray[inputIndex];
+    let inputHtmlElement: HTMLElement = document.getElementsByName(this.inputFieldsNamesArray[inputIndex]).item(0);
+    this.inputBoolStatesArray[inputIndex] ? inputHtmlElement.focus() : inputHtmlElement.blur();
+  }
+
+  public handleInputAnimation(inputIndex: number, eventType: 'blur' | 'focus'): void {
+    this.loginRequestObj.userName == "" ? (this.loginRequestObj.password = "", this.confirmPasswordInput = "") : null;
+    switch(eventType){
+      case 'blur':
+        this.inputBoolStatesArray[inputIndex] = false;
         break;
-      case 2:
-        this.isInput2Open = !this.isInput2Open;
+      case 'focus':
+        this.inputBoolStatesArray[inputIndex] = true;
         break;
-      case 3:
-        this.isInput3Open = !this.isInput3Open;
-        break;
+    }
+  }
+
+  public handleUsernameEmptyStatus(): void {
+    this.isUsernameInputEmpty = this.loginRequestObj.userName == "" ? true : false;
+  }
+
+  public handleSignInBtnDisplay(): void{
+    if(this.loginRequestObj.userName != "" && this.loginRequestObj.password != "" && this.confirmPasswordInput != ""){
+      this.isSignInArrowShown = true;
+    } else {
+      this.isSignInArrowShown = false;
     }
   }
 }

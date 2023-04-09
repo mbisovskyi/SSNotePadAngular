@@ -7,7 +7,15 @@ export class LoginRequest {
 export class LoginResponse {
     userId: number = 0;
     userName: string = "";
-    firstName: string = "";
-    isOwnerOperator: boolean = false;
     token: string = "";
+}
+
+export class RegisterRequest extends LoginRequest {
+    email: string = "";
+}
+
+export class RegisterResponse {
+    userId: number = 0;
+    userName: string = "";
+    email: string = "";
 }
